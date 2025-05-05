@@ -15,6 +15,6 @@ app.listen(process.env.PORT, (err) => {
     }
     })
 
-    mongoose.connect('mongodb://localhost:27017/recettes')
+    mongoose.connect(process.env.URL_BDD)
    
     
