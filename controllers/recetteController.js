@@ -15,14 +15,14 @@ exports.getRecette = async (req, res) => {
         const search = {};
         const {titre} = req.query;
         const {ingredients} = req.query;
-        const {catégorie} = req.query;
+        const {categorie} = req.query;
          if (titre) {
             search.titre = { $regex: titre, $options: 'i' }
         }
         if (ingredients) {
             search.ingredients = { $regex: ingredients, $options: 'i' }
         }
-        if (catégorie) {
+        if (categorie) {
             search.categorie = { $regex: categorie, $options: 'i' }
         }
         const recettes = await recetteModel.find(search)
@@ -44,8 +44,6 @@ exports.getRecetteById = async (req, res) => {
 
 exports.putRecetteById = async (req, res) => {
       try{
-        console.log(req.body);
-        
           const recette = await recetteModel.findByIdAndUpdate(req.params.id, req.body, {runValidators: true, new: true});
           res.json({message: "Recette bien modifiée", recette: recette});
       }catch(error){
